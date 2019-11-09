@@ -1,0 +1,66 @@
+$submit-color: #DC6180;
+$thing: #D8312A;
+
+$main-font: 'Gudea', sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
+
+$field-color: #afb1be;
+h2 {
+    color: red;
+}
+
+#login {
+    /*
+    top: 10px;
+    left: 0;
+    right: 0; */
+
+    font-family: $main-font;
+    font-weight: 600;
+
+    width: 240px;
+    margin: auto;
+    padding: 100px 40px 40px 40px;
+    background: linear-gradient(45deg,  #35394a 0%,#1f222e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+#login-title {
+    color: rgb(175, 177, 190);
+    height: 60px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.login-field {
+    text-align: left;
+    width: 100%;
+
+    input[type='text'], input[type='password'] {
+        width: 100%;
+
+        text-align: left;
+        color: $field-color;
+        margin-top: -2px;
+       // padding: 10px 65px;
+        background: rgb(50, 54, 74);
+        border-top: 2px solid rgb(57, 61, 82);
+        border-bottom: 2px solid rgb(57, 61, 82);
+        border-right: none;
+        border-left: none;
+        outline: none;
+        font-family: $main-font;
+        box-shadow: none;
+    }
+}
+
+#login-submit {
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 50px;
+    border: 2px solid $submit-color;
+    color: $submit-color;
+    text-transform: uppercase;
+    font-size: 11px;
+}
