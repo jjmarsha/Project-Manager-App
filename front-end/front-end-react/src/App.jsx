@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import NavigationSideBar from './utils/Navigation/Navigation';
+import NavigationSideBar from './components/Navigation/Navigation';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {Links} from "./PageLinks";
 import {Row} from "reactstrap";

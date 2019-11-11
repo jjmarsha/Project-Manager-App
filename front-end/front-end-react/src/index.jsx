@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Loading from './utils/Loading';
+import Loading from './components/Loading';
 
 
 //If logged in

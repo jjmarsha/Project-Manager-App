@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from "../../utils/Page";
+import Page from "../../components/Page";
 
 
 export default class Channels extends React.Component {
