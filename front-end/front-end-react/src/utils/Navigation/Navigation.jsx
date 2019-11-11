@@ -1,10 +1,14 @@
 import React from 'react';
-import {Links} from '../PageLinks';
+import {Links} from '../../PageLinks';
 import {Link} from 'react-router-dom';
 import {ListGroup, ListGroupItem} from 'reactstrap';
-import Sidebar from './Sidebar/Sidebar';
+import Sidebar from '../Sidebar/Sidebar';
 import {NavLink} from "react-router-dom";
 //{Redirect, Route, RouteComponentProps, Switch, withRouter}
+import "./Navigation.scss";
+
+//We can later implement to allow the user to change color of sidebar
+const currentStyle = "success";
 
 export default class NavigationSideBar extends React.Component {
     constructor(props) {
@@ -22,7 +26,7 @@ export default class NavigationSideBar extends React.Component {
 
     render() {
         return(
-            <Sidebar>
+            <Sidebar background={currentStyle}>
                 <div></div>
                 <ListGroup>
                     {Links.map((value, index) => {
@@ -31,7 +35,10 @@ export default class NavigationSideBar extends React.Component {
                                 key={index}
                                 tag={NavLink}
                                 action
-                                to={value.url}>
+                                to={value.url}
+                                color={currentStyle}
+                                className="List-Item-custom"
+                                >
                             {value.text}   
                             </ListGroupItem>
                         )
