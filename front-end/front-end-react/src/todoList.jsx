@@ -1,15 +1,5 @@
 import React from 'react';
 
-
-/*
-    todo = [
-        {
-            itemname; string
-            crossedOff: bool
-        }
-    ]
-*/
-
 const TaskList = [
     {
         taskName: "Buy Groceries",
