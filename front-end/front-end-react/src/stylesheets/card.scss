@@ -1,0 +1,37 @@
+
+
+.card {
+    margin: 25px;
+    padding: 15px;
+    width: 250px;
+    background: #fff;
+    float: left;
+    box-shadow: 0 6px 2px 0px #dce8f4;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 10px 0px #dce8f4;
+}
+
+.card-content {
+    color: #32325d;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.author {
+    color: #999999;
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.status-green {
+    width: 30px;
+    height: 8px;
+    border-radius: 10px;
+    background: #23d2ac;
+    margin-bottom: 15px;
+}
