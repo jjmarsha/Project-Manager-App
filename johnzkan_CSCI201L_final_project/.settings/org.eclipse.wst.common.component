@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="johnzkan_CSCI201L_final_project">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="mysql-socket-factory-1.0.15-jar-with-dependencies.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/johnzkan_CSCI201L_final_project/mysql-socket-factory-1.0.15-jar-with-dependencies.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-java-5.1.46 (1).jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/johnzkan_CSCI201L_final_project/mysql-connector-java-5.1.46 (1).jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-20190722.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/johnzkan_CSCI201L_final_project/json-20190722.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="johnzkan_CSCI201L_final_project"/>
+        <property name="java-output-path" value="/johnzkan_CSCI201L_final_project/build/classes"/>
+    </wb-module>
+</project-modules>
