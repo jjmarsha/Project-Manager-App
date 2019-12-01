@@ -24,27 +24,6 @@ export default class Login extends Component {
   //   })
   // }
 
-
-  handleChange = event => {
-    this.setState({ 
-      username: event.target.value
-     });
-  }
-
-  handlesubmit = event => {
-    event.preventDefault();
-
-    const data = {
-      username: this.state.username
-    }
-
-    axios.post("http://localhost:8080/final-project/login", {data})
-      .then(results => {
-        console.log(results);
-        console.log(results.data);
-      })
-  }
-
   constructor(props) {  
     super(props);
     this.state = {
@@ -53,6 +32,35 @@ export default class Login extends Component {
       password: ''
     }
   }
+
+
+  handleChange = event => {
+    console.log(event.target);
+
+    this.setState({ 
+      [event.target.name]: event.target.value
+     });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const data = {
+      username: this.state.username,
+      password: this.state.password
+    }
+
+    axios.post("http://localhost:8080/final-project/login", {data})
+      .then(results => {
+        console.log(results);
+        console.log(results.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+
 
   // FETCH by chris
   // constructor() {
@@ -73,20 +81,23 @@ export default class Login extends Component {
 
   render() {
     return (
+      <div id="login-page">
         <div id="login">
             <div id="login-title">Login to your account</div>
             <form id="login-form" onSubmit={this.handleSubmit}>
                 <div className="login-field">
-                    <input type="text" autoComplete={false} name="username" placeholder="Username!" onChange = {this.handleChange} />
+                    <img class="icon" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png"></img>
+                    <input type="text" autoComplete={false} name="username" placeholder="Username" onChange = {this.handleChange} value={this.state.username} />
                 </div>
                 <div className="login-field">
-                    <input type="password" name="password" autoComplete={false} placeholder="Password!" />
+                    <img class="icon" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"></img>
+                    <input type="password" name="password" autoComplete={false} placeholder="Password" onChange = {this.handleChange} value={this.state.password} />
                 </div>
                 <div className="login-field">
                     <input type="submit" name="submit" id="login-submit" value="Log in" />
-                    <div className="forgot"><a href="#">FORGOT PSSSWORD</a></div>
                 </div>
             </form>
+        </div>
       </div>
     );
   }

@@ -9,6 +9,12 @@ h2 {
     color: red;
 }
 
+#login-page {
+    background: -webkit-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Chrome10+,Safari5.1+ */
+    height: 100%;
+    padding: 200px;
+
+}
 #login {
     /*
     top: 10px;
@@ -16,11 +22,15 @@ h2 {
     right: 0; */
 
     font-family: $main-font;
-    font-weight: 600;
+    font-weight: 400;
 
-    width: 240px;
+    width: 300px;
+    height: 400px;
     margin: auto;
+    // margin-top: 100px;
     padding: 100px 40px 40px 40px;
+    box-sizing: border-box;
+    // background: -webkit-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Chrome10+,Safari5.1+ */
     background: linear-gradient(45deg,  #35394a 0%,#1f222e 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
@@ -29,18 +39,25 @@ h2 {
     color: rgb(175, 177, 190);
     height: 60px;
     text-align: left;
-    font-size: 16px;
+    font-size: 20px;
+}
+.login-form {
+    width: 100%;
 }
 
 .login-field {
     text-align: left;
     width: 100%;
+    
 
     input[type='text'], input[type='password'] {
         width: 100%;
 
+        font-size: 15px;
+
         text-align: left;
-        color: $field-color;
+        color: white;
+        // color: $field-color;
         margin-top: -2px;
        // padding: 10px 65px;
         background: rgb(50, 54, 74);
@@ -51,6 +68,13 @@ h2 {
         outline: none;
         font-family: $main-font;
         box-shadow: none;
+
+        // position: absolute;
+        // left: 0;
+    }
+    input[type='submit'] {
+        font-size: 15px;
+
     }
 }
 
@@ -62,4 +86,14 @@ h2 {
     color: $submit-color;
     text-transform: uppercase;
     font-size: 11px;
+    margin-top: 20px;
+
+}
+
+.icon {
+    // position: absolute;
+    // z-index: 1;
+    // left: 36px;
+    // top: 8px;
+    opacity: 0.5;
 }
