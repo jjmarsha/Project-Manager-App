@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../../stylesheets/login.scss';
+import axios from 'axios';
+
 
 
 /*
@@ -9,24 +11,65 @@ import '../../stylesheets/login.scss';
 */
 
 
+
 export default class Login extends Component {
+  // componentDidMount() {
+  //   axios.get('http://localhost:8080/final-project/login')
+  //   .then(response => {
+  //     this.setState({error: response.data});
+  //   })
+  //   .catch(error=> {
+  //     console.log("hello");
+  //     console.log(error);
+  //   })
+  // }
 
-  constructor() {
-    super();
-    this.handleSubmit = this.handleSubmit.bind(this);
+
+  handleChange = event => {
+    this.setState({ 
+      username: event.target.value
+     });
   }
-  handleSubmit(event) {
+
+  handlesubmit = event => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    var endpoint = "https://cors-anywhere.herokuapp.com/localhost:8080/201FinalProj/login";
-    fetch(endpoint, {
-      body: data,
-    })
-    .then(data => {
-      console.log(data);
-    });
+
+    const data = {
+      username: this.state.username
+    }
+
+    axios.post("http://localhost:8080/final-project/login", {data})
+      .then(results => {
+        console.log(results);
+        console.log(results.data);
+      })
   }
 
+  constructor(props) {  
+    super(props);
+    this.state = {
+      error: '',
+      username: '',
+      password: ''
+    }
+  }
+
+  // FETCH by chris
+  // constructor() {
+  //   super();
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   const data = new FormData(event.target);
+  //   var endpoint = "https://cors-anywhere.herokuapp.com/localhost:8080/201FinalProj/login";
+  //   fetch(endpoint, {
+  //     body: data,
+  //   })
+  //   .then(data => {
+  //     console.log(data);
+  //   });
+  // }
 
   render() {
     return (
@@ -34,7 +77,7 @@ export default class Login extends Component {
             <div id="login-title">Login to your account</div>
             <form id="login-form" onSubmit={this.handleSubmit}>
                 <div className="login-field">
-                    <input type="text" autoComplete={false} name="username" placeholder="Username!" />
+                    <input type="text" autoComplete={false} name="username" placeholder="Username!" onChange = {this.handleChange} />
                 </div>
                 <div className="login-field">
                     <input type="password" name="password" autoComplete={false} placeholder="Password!" />
