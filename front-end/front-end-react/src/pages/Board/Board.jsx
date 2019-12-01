@@ -11,4 +11,8 @@ export default class Board extends React.Component {
             </Page>
         )
     }
+
+    componentDidMount() {
+        var container = React
+    }
 }

@@ -10,11 +10,29 @@ import '../../stylesheets/login.scss';
 
 
 export default class Login extends Component {
+
+  constructor() {
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    var endpoint = "https://cors-anywhere.herokuapp.com/localhost:8080/201FinalProj/login";
+    fetch(endpoint, {
+      body: data,
+    })
+    .then(data => {
+      console.log(data);
+    });
+  }
+
+
   render() {
     return (
         <div id="login">
             <div id="login-title">Login to your account</div>
-            <form id="login-form" name="login-form" method="POST" action="#">
+            <form id="login-form" onSubmit={this.handleSubmit}>
                 <div className="login-field">
                     <input type="text" autoComplete={false} name="username" placeholder="Username!" />
                 </div>
