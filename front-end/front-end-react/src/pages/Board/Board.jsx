@@ -23,10 +23,6 @@ const reorder = (list, startIndex, endIndex) => {
 
 const giveID = (list, count, offset) => {
     const new_arrry = Array.from( {length: count}, (v, k) => k).map(k => ({
-        // date: list[k].date,
-        // description: list[k].description,
-        // status: list[k].status,
-        // taskName: list[k].taskName,
         id: `item-${k + offset}`,
         content: list[k]
     }));
@@ -151,6 +147,7 @@ export default class Board extends Component {
     getList = id => this.state[this.id2List[id]];
 
     onDragEnd = result => {
+        console.log(result);
         const { source, destination } = result;
 
         // dropped outside the list
@@ -189,6 +186,37 @@ export default class Board extends Component {
                 source,
                 destination
             );
+
+            let sourceTask;
+            if (source.droppableId === 'droppable1') sourceTask = this.state.todo[source.index];
+            else if (source.droppableId === 'droppable2') sourceTask = this.state.inprogress[source.index];
+            else if (source.droppableId === 'droppable3') sourceTask = this.state.completed[source.index];
+
+            console.log(sourceTask);
+            const task = sourceTask.content;
+            const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+
+            let parameters = "";
+            parameters += "?taskName=" + task.taskName;
+            parameters += "&description='" + task.description +"'";
+            parameters += "&status=" + task.status;
+            parameters += "&projectID=" + window.localStorage.getItem("projectID");
+            parameters += "&button=edit-task";
+            parameters += "&date=" + date;
+
+            const new_parameters = encodeURIComponent(parameters);
+    
+            const finalThing = "http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet" + (new_parameters);
+            console.log(finalThing);
+    
+            axios.get(finalThing)
+            .then(results => {
+                console.log(results);
+            })
+
+
+
 
             this.setState({
                 todo: result.droppable != null ? result.droppable : this.state.todo,

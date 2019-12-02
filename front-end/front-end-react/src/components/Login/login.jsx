@@ -38,7 +38,7 @@ export default class Login extends Component {
           console.log("error");
           console.log(results.data.msg);
           this.setState({
-            [this.state.error]: results.data.msg
+            error: results.data.msg
           });
         } else {
           console.log(results.data);

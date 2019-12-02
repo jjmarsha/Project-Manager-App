@@ -46,7 +46,7 @@ export default class CreateTask extends React.Component {
         thing += "&description=" + description;
         thing += "&status=" + status;
         thing += "&projectID=" + window.localStorage.getItem("projectID");
-        thing += "&button=" + "create-task";
+        thing += "&button=create-task";
         thing += "&date=" + date;
 
 
