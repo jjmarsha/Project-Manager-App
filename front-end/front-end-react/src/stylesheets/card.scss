@@ -56,3 +56,14 @@
 .assignee {
     font-size: 12px;
 }
+
+.header-bar {
+    padding: 10px;
+    //width: 250px;
+    width: calc(100% + 5px);
+    text-align: center;
+    margin-left: -3px;
+    margin-bottom: 5px;
+    background: rgb(245, 245, 245);
+    //float: left;
+}
