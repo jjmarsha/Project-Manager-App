@@ -50,7 +50,7 @@ export default class Login extends Component {
       password: this.state.password
     }
 
-    axios.post("http://localhost:8080/final-project/login", {data})
+    axios.post("http://localhost:8080/johnzkan_CSCI201L_final_project/login", {data})
       .then(results => {
         console.log(results);
         console.log(results.data);
