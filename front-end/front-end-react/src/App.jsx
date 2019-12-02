@@ -6,11 +6,11 @@ import {Links} from "./PageLinks";
 import {Row} from "reactstrap";
 
 
-function App() {
+function App(props) {
   return (
     <Row style={{width: "100%"}}>
       <BrowserRouter>
-        <NavigationSideBar/>
+        <NavigationSideBar handleSession={props.handleSession} Dev_NoLogin={props.Dev_NoLogin}/>
         <Switch>
           {Links.map((value, key) => {
             return (

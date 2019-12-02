@@ -2,3 +2,25 @@
     padding-left: 30px;
     border: none;
 }
+
+.profile-container {
+    height: 210px;
+    padding: 10px;
+    margin: auto;
+
+    .picture {
+        width: 180px;
+        height: 180px;
+        border-radius: 100px;
+        background-color: white;
+        margin: auto;
+        overflow: hidden;
+
+        img {
+            position: relative;
+            left: -14%;
+            height: 100%;
+            margin: auto;
+        }
+    }
+}
