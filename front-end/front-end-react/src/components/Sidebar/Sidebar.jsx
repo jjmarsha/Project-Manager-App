@@ -4,9 +4,9 @@ import {Col} from 'reactstrap';
 
 const Sidebar = (props) => {
     return (
-        <Col lg="2" className={"sidebar " + props.background}>
+        <div className={"sidebar " + props.background}>
             {props.children}
-        </Col>
+        </div>
     )
 }
 
