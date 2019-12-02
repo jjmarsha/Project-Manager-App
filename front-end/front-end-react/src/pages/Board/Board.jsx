@@ -224,7 +224,7 @@ export default class Board extends Component {
                       style={getListStyle(snapshot.isDraggingOver)}
                     >
                       <div className="header-bar">{this.columnNames[index]}</div>
-                      {columns[index].map((item, index) => (
+                      {item.map((item, index) => (
                         <Card 
                           key={item.id}
                           draggableId={item.id}
