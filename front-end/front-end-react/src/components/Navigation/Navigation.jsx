@@ -31,7 +31,8 @@ export default class NavigationSideBar extends React.Component {
     render() {
         return(
             <Sidebar background={currentStyle}>
-                <div></div>
+                Board
+                {/* <div></div>
                 <ListGroup>
                     {Links.map((value, index) => {
                         return (
@@ -47,7 +48,7 @@ export default class NavigationSideBar extends React.Component {
                             </ListGroupItem>
                         )
                     })}
-                </ListGroup>
+                </ListGroup>*/}
                 {this.props.Dev_NoLogin ? <div onClick={this.handleClick}>reset</div> : null}
             </Sidebar>
         )

@@ -8,22 +8,7 @@ import Channels from "./pages/Channels/Channels";
 export const Links = [
     {
         text: "Board",
-        url: "/app/board",
+        url: "/",
         component: Board
-    },
-    {
-        text: "Repositories",
-        url: "/app/repos",
-        component: Repo
-    },
-    {
-        text: "Channels",
-        url: "/app/channels",
-        component: Channels
-    },
-    {
-        text: "Direct Messages",
-        url: "/app/messages",
-        component: Messages
     },
 ]

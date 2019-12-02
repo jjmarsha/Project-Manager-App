@@ -8,22 +8,28 @@ import {Row} from "reactstrap";
 
 function App(props) {
   return (
-    <Row style={{width: "100%"}}>
-      <BrowserRouter>
+    <>
+      <div style={{width: "100%"}}>
         <NavigationSideBar handleSession={props.handleSession} Dev_NoLogin={props.Dev_NoLogin}/>
-        <Switch>
-          {Links.map((value, key) => {
-            return (
-              <Route
-                path={value.url}
-                key={key}
-                component={value.component}
-              />
-            )
-          })}
-        </Switch>
-      </BrowserRouter>
-    </Row>
+      </div>
+      <Row style={{width: "100%", padding: "0", margin: "auto"}}>
+        <BrowserRouter>
+          <Switch>
+            {Links.map((value, key) => {
+              return (
+                <div style={{margin: "auto", display: "flex"}}>
+                <Route
+                  path={value.url}
+                  key={key}
+                  component={value.component}
+                />
+                </div>
+              )
+            })}
+          </Switch>
+        </BrowserRouter>
+      </Row>
+    </>
   );
 }
 
