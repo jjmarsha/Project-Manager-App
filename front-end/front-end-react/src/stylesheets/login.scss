@@ -89,7 +89,16 @@ h2 {
     margin-top: 20px;
 
 }
-
+#register-link {
+    margin-top: 40px;
+}
+#register-link a {
+    margin: auto;
+    color: gray;
+}
+#register-link a:hover {
+    color: pink;
+}
 .icon {
     // position: absolute;
     // z-index: 1;

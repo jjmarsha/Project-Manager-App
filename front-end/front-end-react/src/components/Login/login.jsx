@@ -6,9 +6,6 @@ import axios from 'axios';
   // Have all the form values stored in the class's state. Use the onChange attribute to update the state
   // You can either use fetch or axios for Ajax requests
 
-
-
-
 export default class Login extends Component {
   constructor(props) {  
     super(props);
@@ -39,6 +36,9 @@ export default class Login extends Component {
       .then(results => {
         if(results.data.msg == "Invalid username and password combination") {
           console.log("error");
+          this.setState({
+            [this.state.error]: results.data.msg
+          });
         } else {
           console.log(results.data);
           window.localStorage.setItem("projectID", results.data.projectID);
@@ -62,8 +62,14 @@ export default class Login extends Component {
                     <img className="icon" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"></img>
                     <input type="password" name="password" autoComplete="off" placeholder="Password" onChange = {this.handleChange} value={this.state.password} />
                 </div>
+                <div id="error">
+                  {this.state.error}
+                </div>
                 <div className="login-field" style={{margin: "auto", textAlign: "center"}}>
                     <input type="submit" name="submit" id="login-submit" value="Log in" />
+                </div>
+                <div id="register-link">
+                  <a href="register.jsx">Register</a>
                 </div>
             </form>
         </div>
