@@ -79,6 +79,7 @@ export default class Board extends Component {
             inprogress:  getItems(5, 10),
             completed: getItems(7, 20)
         };
+        this.columnNames = ['To-Do', 'In-Progress', 'Completed'];
     }
 
     componentDidMount() {
@@ -203,56 +204,41 @@ export default class Board extends Component {
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
+        var columns = [];
+        columns.push(this.state.todo);
+        columns.push(this.state.inprogress);
+        columns.push(this.state.completed);
         return (
           <React.Fragment>
           <div>
             <CreateTask>
-              
+
             </CreateTask>
           </div>
             <DragDropContext onDragEnd={this.onDragEnd}>
-                <Droppable droppableId="droppable1">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}>
-                            <div className="header-bar">To-Do</div>
-                            {this.state.todo.map((item, index) => (
-                                <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
-                                </Card>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
+              {columns.map((item, index) => (
+                <Droppable droppableId={'droppable' + index}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      style={getListStyle(snapshot.isDraggingOver)}
+                    >
+                      <div className="header-bar">{this.columnNames[index]}</div>
+                      {columns[index].map((item, index) => (
+                        <Card 
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}
+                          content={item.content}
+                        >
+
+                        </Card>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
                 </Droppable>
-                <Droppable droppableId="droppable2">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}>
-                            <div className="header-bar">In-progress</div>
-                            {this.state.inprogress.map((item, index) => (
-                              <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
-                              </Card>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                <Droppable droppableId="droppable3">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}>
-                            <div className="header-bar">Completed</div>
-                            {this.state.completed.map((item, index) => (
-                              <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
-                              </Card>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
+              ))}
             </DragDropContext>
             </React.Fragment>
         );

@@ -3,20 +3,6 @@ import ReactDOM from "react-dom";
 import '../stylesheets/modal.scss';
 import axios from 'axios';
 
-
-const inputParsers = {
-    date(input) {
-      const [month, day, year] = input.split('/');
-      return `${year}-${month}-${day}`;
-    },
-    uppercase(input) {
-      return input.toUpperCase();
-    },
-    number(input) {
-      return parseFloat(input);
-    },
-  };
-
 class CardModal extends React.Component {
     constructor(props) {
         super(props);
@@ -35,8 +21,22 @@ class CardModal extends React.Component {
         this.onChangeStatus = this.onChangeStatus.bind(this);
     }
 
+    getDerivedStateFromProps(props, state) {
+        if (props === this.props) return {};
+        else return {
+            taskName: props.taskName,
+            taskID: props.taskID,
+            date: props.date,
+            description: props.description,
+            status: props.status
+        };
+    }
+
+    //called when the props change
+
     componentWillReceiveProps(nextProps) {
-        this.setState({
+        if (nextProps === this.props) return;
+        else this.setState({
             taskName: nextProps.taskName,
             taskID: nextProps.taskID,
             date: nextProps.date,
@@ -49,6 +49,12 @@ class CardModal extends React.Component {
         this.wrapperRef = node;
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        console.log(nextProps);
+        console.log(nextState);
+    }
+
+    //once in component lifetime
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClick);
         this.setState({
@@ -86,13 +92,11 @@ class CardModal extends React.Component {
         this.setState({
             description: event.target.value
         })
-        console.log(this.state.description);
     }
 
     onChangeStatus(event) {
         event.preventDefault();
 
-        console.log(event.target.value);
         this.setState({
             status: event.target.value
         })
@@ -117,33 +121,7 @@ class CardModal extends React.Component {
         axios.get("http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet" + thing)
         .then(results => {
             console.log(results);
-        })
-
-        /*axios.get(`http://localhost:8080/johnzkan_CSCI201L_final_project/displayProjectwithTask?projectID=${projectID}`)
-        .then(results => {
-            var todo = [];
-            var inprogress = [];
-            var completed = [];
-
-            for (let index = 0; index < results.data.length; index++) {
-                var task = results.data[index];
-                if (task.status === "0") todo.push(task);
-                else if (task.status === "1") inprogress.push(task);
-                else if (task.status === "2") completed.push(task);
-            }
-
-            todo = giveID(todo, todo.length, 0);
-            inprogress = giveID(inprogress, inprogress.length, 10);
-            completed = giveID(completed, completed.length, 20);
-            console.log(todo);
-            
-            this.setState({
-                todo: todo,
-                inprogress: inprogress,
-                completed: completed
-            })
-          console.log(results);
-        }); */
+        });
     }
 
 

@@ -29,7 +29,6 @@ export default class CreateTask extends React.Component {
         this.setState({
             description: event.target.value
         })
-        console.log(this.state.description);
     }
 
     onChangeStatus(event) {
