@@ -20,6 +20,18 @@ const reorder = (list, startIndex, endIndex) => {
     return result;
 };
 
+const giveID = (list, count, offset) => {
+    const new_arrry = Array.from( {length: count}, (v, k) => k).map(k => ({
+        // date: list[k].date,
+        // description: list[k].description,
+        // status: list[k].status,
+        // taskName: list[k].taskName,
+        id: `item-${k + offset}`,
+        content: list[k]
+    }));
+    return new_arrry;
+}
+
 /**
  * Moves an item from one list to another list.
  */
@@ -63,7 +75,7 @@ export default class Board extends Component {
         super(props);
         this.state = {
             todo: getItems(10),
-            inprogress: getItems(5, 10),
+            inprogress:  getItems(5, 10),
             completed: getItems(7, 20)
         };
     }
@@ -72,6 +84,27 @@ export default class Board extends Component {
         const projectID = window.localStorage.getItem("projectID");
         axios.get(`http://localhost:8080/johnzkan_CSCI201L_final_project/displayProjectwithTask?projectID=${projectID}`)
         .then(results => {
+            var todo = [];
+            var inprogress = [];
+            var completed = [];
+
+            for (let index = 0; index < results.data.length; index++) {
+                var task = results.data[index];
+                if (task.status === "0") todo.push(task);
+                else if (task.status === "1") inprogress.push(task);
+                else if (task.status === "2") completed.push(task);
+            }
+
+            todo = giveID(todo, todo.length, 0);
+            inprogress = giveID(inprogress, inprogress.length, 10);
+            completed = giveID(completed, completed.length, 20);
+            console.log(todo);
+            
+            this.setState({
+                todo: todo,
+                inprogress: inprogress,
+                completed: completed
+            })
           console.log(results);
         });
     }

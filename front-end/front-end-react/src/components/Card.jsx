@@ -27,10 +27,10 @@ class Card extends React.Component {
         super(props);
         this.state = {
             show: false,
-            name: "Test Task",
-            description: "A test task",
+            taskName: this.props.content.taskName,
+            description: this.props.content.description,
             taskID: 1234,
-            tags: "complete",
+            status: this.props.content.status,
             asignees: [
                 "Christopher Ting", "Nicole Ng"
             ],
@@ -38,9 +38,9 @@ class Card extends React.Component {
                 key: props.key,
                 draggableId: props.draggableId,
                 index: props.index,
-                content: props.content
             }
         }
+        
         this.myRef = React.createRef();
         this.updateFromServlet = this.updateFromServlet.bind(this);
         this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -48,9 +48,42 @@ class Card extends React.Component {
 
         this.lastMouseDown = 0;
     }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            taskName: nextProps.content.taskName,
+            description: nextProps.content.description,
+            status: nextProps.content.status,
+            draggable: {
+                key: nextProps.key,
+                draggableId: nextProps.draggableId,
+                index: nextProps.index,
+            }
+        
+        });
+    }
     componentDidMount() {
+        console.log(this.props);
+        
+
         document.addEventListener('mousedown', this.handleMouseDown);
         document.addEventListener('mouseup', this.handleMouseUp);
+        this.setState({
+                show: false,
+                taskName: this.props.content.taskName,
+                description: this.props.content.description,
+                taskID: 1234,
+                status: this.props.content.status,
+                asignees: [
+                    "Christopher Ting", "Nicole Ng"
+                ],
+                draggable: {
+                    key: this.props.key,
+                    draggableId: this.props.draggableId,
+                    index: this.props.index,
+                }
+            
+        });
     }
     
 
@@ -78,7 +111,7 @@ class Card extends React.Component {
 
     handleMouseDown(event) {
         if (this.myRef.current != null && this.myRef.current.contains(event.target)) {
-            console.log('Mouse Down');
+            console.log(this.props.content);
             var timeNow = (new Date()).getTime();
             this.lastMouseDown = timeNow;
         }
@@ -90,9 +123,6 @@ class Card extends React.Component {
        if (this.myRef.current != null && this.myRef.current.contains(event.target)) {
            var timeNow = (new Date()).getTime();
            if ((timeNow - this.lastMouseDown) <= 250){
-               this.setState({
-                   tags: item
-               })
                this.showModal();
            }
        }
@@ -104,9 +134,9 @@ class Card extends React.Component {
 
 
         var name = "status ";
-        if (this.state.tags === 'todo') name += 'red';
-        if (this.state.tags === 'inprogress') name += 'yellow';
-        if (this.state.tags === 'completed') name += 'green';
+        if (this.state.status === '0') name += 'red';
+        if (this.state.tags === '1') name += 'yellow';
+        if (this.state.tags === '2') name += 'green';
 
         const config = {
             
@@ -122,13 +152,13 @@ class Card extends React.Component {
                         <div className="card" ref={this.myRef}>
                             <div className={name}></div>
                             <div className="card-content">
-                                {this.state.draggable.content}
+                                {this.state.taskName}
                             </div>
                             <div className="assignee">
                                 {this.state.asignees.map((asignee) => asignee) + " "}
                             </div>
 
-                                <CardModal show={this.state.show} handleClose={this.hideModal}>
+                                <CardModal show={this.state.show} handleClose={this.hideModal} content={this.props.content}>
                                     <p> {this.state.name} </p>
                                 </CardModal>
                         </div>
