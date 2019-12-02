@@ -41,10 +41,11 @@ export default class Login extends Component {
           console.log("error");
         } else {
           console.log(results.data);
+          window.localStorage.setItem("projectID", results.data.projectID);
           window.localStorage.setItem("session", this.state.username);
           this.props.handleSession(this.state.username);
         }
-      })
+      });
   }
 
   render() {

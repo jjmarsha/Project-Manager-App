@@ -37,7 +37,7 @@ public class displayProjectwithTask extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(CREDENTIALS_STRING);
 			HttpSession session = request.getSession();
-			int projectID = (int) session.getAttribute("projectID");
+			int projectID = Integer.parseInt(request.getParameter("projectID"));
 			//projectID = 1;
 			PreparedStatement loadTask = connection.prepareStatement("SELECT * FROM task WHERE projectID = ?");
 			loadTask.setInt(1, projectID);

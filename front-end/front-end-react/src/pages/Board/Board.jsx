@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Page from "../../components/Page";
 import Card from "../../components/Card";
-
+import axios from 'axios';
 // fake data generator
 const getItems = (count, offset = 0) =>
     Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -59,11 +59,22 @@ const getListStyle = isDraggingOver => ({
 });
 
 export default class Board extends Component {
-    state = {
-        todo: getItems(10),
-        inprogress: getItems(5, 10),
-        completed: getItems(7, 20)
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            todo: getItems(10),
+            inprogress: getItems(5, 10),
+            completed: getItems(7, 20)
+        };
+    }
+
+    componentDidMount() {
+        const projectID = window.localStorage.getItem("projectID");
+        axios.get(`http://localhost:8080/johnzkan_CSCI201L_final_project/displayProjectwithTask?projectID=${projectID}`)
+        .then(results => {
+          console.log(results);
+        });
+    }
 
     /**
      * A semi-generic way to handle multiple lists. Matches
