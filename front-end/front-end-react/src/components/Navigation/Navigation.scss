@@ -1,3 +1,6 @@
+$main-font: 'Gudea', sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
+
 .List-Item-custom {
     padding-left: 30px;
     border: none;
@@ -23,4 +26,19 @@
             margin: auto;
         }
     }
+}
+.sidebar {
+    color: white;
+    font-family: $main-font;
+    padding: 20px;
+    background: -webkit-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Chrome10+,Safari5.1+ */
+}
+
+h3 {
+    color: white;
+    font-style: italic;
+}
+h3:hover {
+    color: lightgray;
+    cursor: pointer;
 }

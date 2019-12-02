@@ -20,6 +20,10 @@ export default class NavigationSideBar extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            projectID: window.localStorage.getItem("projectID")
+
+        }
     }
 
 
@@ -30,8 +34,8 @@ export default class NavigationSideBar extends React.Component {
 
     render() {
         return(
-            <Sidebar background={currentStyle}>
-                Board
+            <Sidebar className="sidebar">
+                <h1>Task Board of Project {this.state.projectID}</h1>
                 {/* <div></div>
                 <ListGroup>
                     {Links.map((value, index) => {
@@ -49,7 +53,7 @@ export default class NavigationSideBar extends React.Component {
                         )
                     })}
                 </ListGroup>*/}
-                {this.props.Dev_NoLogin ? <div onClick={this.handleClick}>Logout</div> : null}
+               <h3> {this.props.Dev_NoLogin ? <div onClick={this.handleClick}>logout</div> : null}</h3>
             </Sidebar>
         )
     }

@@ -109,6 +109,33 @@ export default class Board extends Component {
             console.log(results);
             });
         }
+        else {
+            axios.get(`http://localhost:8080/johnzkan_CSCI201L_final_project/displayProjectwithTask?projectID=5`)
+            .then(results => {
+                var todo = [];
+                var inprogress = [];
+                var completed = [];
+
+                for (let index = 0; index < results.data.length; index++) {
+                    var task = results.data[index];
+                    if (task.status === "0") todo.push(task);
+                    else if (task.status === "1") inprogress.push(task);
+                    else if (task.status === "2") completed.push(task);
+                }
+
+                todo = giveID(todo, todo.length, 0);
+                inprogress = giveID(inprogress, inprogress.length, 10);
+                completed = giveID(completed, completed.length, 20);
+                console.log(todo);
+                
+                this.setState({
+                    todo: todo,
+                    inprogress: inprogress,
+                    completed: completed
+                })
+            console.log(results);
+            });
+        }
     }
 
     /**
@@ -182,7 +209,7 @@ export default class Board extends Component {
                         <div
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}>
-                            <div className="header-bar">Backlog</div>
+                            <div className="header-bar">To-Do</div>
                             {this.state.todo.map((item, index) => (
                                 <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
                                 </Card>

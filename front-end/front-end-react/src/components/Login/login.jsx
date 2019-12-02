@@ -71,7 +71,7 @@ export default class Login extends Component {
                 </div>
                 <div id="redirects">
                   <div id="register-link" onClick={this.props.toggle}>Register</div>
-                  <div id="guest-link" onClick={this.props.guestHandler}>Continue as guest</div>
+                  <div id="guest-link"  onClick={this.props.guestHandler}>Continue as guest</div>
                 </div>
                 
             </form>
