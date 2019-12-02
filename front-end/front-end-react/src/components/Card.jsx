@@ -29,11 +29,9 @@ class Card extends React.Component {
             show: false,
             taskName: this.props.content.taskName,
             description: this.props.content.description,
-            taskID: 1234,
+            taskID: this.props.content.taskID,
             status: this.props.content.status,
-            asignees: [
-                "Christopher Ting", "Nicole Ng"
-            ],
+            date: this.props.content.date,
             draggable: {
                 key: props.key,
                 draggableId: props.draggableId,
@@ -45,8 +43,8 @@ class Card extends React.Component {
         this.updateFromServlet = this.updateFromServlet.bind(this);
         this.handleMouseDown = this.handleMouseDown.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
-
         this.lastMouseDown = 0;
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -54,6 +52,8 @@ class Card extends React.Component {
             taskName: nextProps.content.taskName,
             description: nextProps.content.description,
             status: nextProps.content.status,
+            taskID: nextProps.content.taskID,
+            date: nextProps.content.date,
             draggable: {
                 key: nextProps.key,
                 draggableId: nextProps.draggableId,
@@ -62,10 +62,7 @@ class Card extends React.Component {
         
         });
     }
-    componentDidMount() {
-        console.log(this.props);
-        
-
+    componentDidMount() {        
         document.addEventListener('mousedown', this.handleMouseDown);
         document.addEventListener('mouseup', this.handleMouseUp);
         this.setState({
@@ -74,9 +71,6 @@ class Card extends React.Component {
                 description: this.props.content.description,
                 taskID: 1234,
                 status: this.props.content.status,
-                asignees: [
-                    "Christopher Ting", "Nicole Ng"
-                ],
                 draggable: {
                     key: this.props.key,
                     draggableId: this.props.draggableId,
@@ -93,7 +87,6 @@ class Card extends React.Component {
             description: data.description,
             taskID: data.taskID,
             tags: data.tags,
-            asignees: data.asignees
         });
     }
 
@@ -111,7 +104,6 @@ class Card extends React.Component {
 
     handleMouseDown(event) {
         if (this.myRef.current != null && this.myRef.current.contains(event.target)) {
-            console.log(this.props.content);
             var timeNow = (new Date()).getTime();
             this.lastMouseDown = timeNow;
         }
@@ -128,19 +120,17 @@ class Card extends React.Component {
        }
     }
 
+    handleUpdate(data) {
+        this.setState({
+            data
+        })
+    }
+
     render() {
-
-
-
-
         var name = "status ";
         if (this.state.status === '0') name += 'red';
         if (this.state.tags === '1') name += 'yellow';
         if (this.state.tags === '2') name += 'green';
-
-        const config = {
-            
-        }
         return (
             <Draggable key={this.state.draggable.id} draggableId={this.state.draggable.draggableId} index={this.state.draggable.index}>
                 {(provided, snapshot) => (
@@ -154,13 +144,20 @@ class Card extends React.Component {
                             <div className="card-content">
                                 {this.state.taskName}
                             </div>
-                            <div className="assignee">
-                                {this.state.asignees.map((asignee) => asignee) + " "}
+                            <div>
+                                {this.state.date}
                             </div>
-
-                                <CardModal show={this.state.show} handleClose={this.hideModal} content={this.props.content}>
-                                    <p> {this.state.name} </p>
-                                </CardModal>
+                            <CardModal show={this.state.show} 
+                                handleClose={this.hideModal} 
+                                handleUpdate={this.handleUpdate}
+                                taskName={this.state.taskName} 
+                                description={this.state.description}
+                                status={this.state.status}
+                                date={this.state.date}
+                                content={this.state.content}
+                            >
+                                <p> {this.state.name} </p>
+                            </CardModal>
                         </div>
 
                     </div>

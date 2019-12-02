@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Page from "../../components/Page";
 import Card from "../../components/Card";
 import axios from 'axios';
+import CreateTask from "../../components/CreateTask";
 // fake data generator
 const getItems = (count, offset = 0) =>
     Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -203,6 +204,12 @@ export default class Board extends Component {
     // But in this example everything is just done in one place for simplicity
     render() {
         return (
+          <React.Fragment>
+          <div>
+            <CreateTask>
+              
+            </CreateTask>
+          </div>
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <Droppable droppableId="droppable1">
                     {(provided, snapshot) => (
@@ -247,6 +254,7 @@ export default class Board extends Component {
                     )}
                 </Droppable>
             </DragDropContext>
+            </React.Fragment>
         );
     }
 }
