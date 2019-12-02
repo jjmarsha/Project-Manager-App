@@ -12,7 +12,7 @@ function App(props) {
       <div style={{width: "100%"}}>
         <NavigationSideBar handleSession={props.handleSession} Dev_NoLogin={props.Dev_NoLogin}/>
       </div>
-      <Row style={{width: "100%"}}>
+      <Row style={{width: "100%", padding: "0", margin: "auto"}}>
         <BrowserRouter>
           <Switch>
             {Links.map((value, key) => {
