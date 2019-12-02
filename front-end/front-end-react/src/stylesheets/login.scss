@@ -24,8 +24,8 @@ h2 {
     font-family: $main-font;
     font-weight: 400;
 
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 500px;
     margin: auto;
     // margin-top: 100px;
     padding: 100px 40px 40px 40px;
@@ -52,6 +52,7 @@ h2 {
 
     input[type='text'], input[type='password'] {
         width: 100%;
+        padding: 6px;
 
         font-size: 15px;
 
@@ -72,6 +73,10 @@ h2 {
         // position: absolute;
         // left: 0;
     }
+    input[name='projectID'] {
+        margin-top: 20px;
+    }
+
     input[type='submit'] {
         font-size: 15px;
 
@@ -89,20 +94,24 @@ h2 {
     margin-top: 20px;
 
 }
-#register-link {
-    margin-top: 40px;
-}
-#register-link a {
-    margin: auto;
+#redirects {
+    margin-top: 90px;
     color: gray;
 }
-#register-link a:hover {
-    color: pink;
+#redirects div:hover {
+    color: lightpink;
+    cursor: pointer;
 }
+
+
 .icon {
     // position: absolute;
     // z-index: 1;
     // left: 36px;
     // top: 8px;
     opacity: 0.5;
+}
+#error {
+    margin-top: 10px;
+    color: red;
 }

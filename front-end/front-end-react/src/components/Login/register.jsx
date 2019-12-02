@@ -40,7 +40,7 @@ export default class Register extends Component {
       .then(results => {
         if(results.data.msg != null) {
           this.setState({
-            [this.state.error]: results.data.msg
+            error: results.data.msg
           });
           console.log("error");
           console.log(results.data.msg);
@@ -49,13 +49,14 @@ export default class Register extends Component {
           window.localStorage.setItem("projectID", results.data.projectID);
           window.localStorage.setItem("session", this.state.username);
           this.props.handleSession(this.state.username);
+          this.props.toggle();
         }
       });
   }
   render() {
     return (
       <div id="login-page">
-        <div id="login" style={{padding: "80px 40px 40px 40px"}}>
+        <div id="login" className="register" style={{padding: "80px 40px 40px 40px"}}>
             <div id="login-title" style={{textAlign: "center"}}>Register for a new account</div>
             <form id="login-form" onSubmit={this.handleSubmit}>
                 <div className="login-field">
@@ -67,7 +68,6 @@ export default class Register extends Component {
                     <input type="password" name="password" autoComplete="off" placeholder="Password" onChange = {this.handleChange} value={this.state.password} />
                 </div>
                 <div className="login-field">
-                    <img className="icon" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"></img>
                     <input type="password" name="samePass" autoComplete="off" placeholder="Confirm password" onChange = {this.handleChange} value={this.state.samePass} />
                 </div>
                 <div className="login-field">

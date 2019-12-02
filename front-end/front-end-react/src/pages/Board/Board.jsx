@@ -82,31 +82,33 @@ export default class Board extends Component {
 
     componentDidMount() {
         const projectID = window.localStorage.getItem("projectID");
-        axios.get(`http://localhost:8080/johnzkan_CSCI201L_final_project/displayProjectwithTask?projectID=${projectID}`)
-        .then(results => {
-            var todo = [];
-            var inprogress = [];
-            var completed = [];
+        if(!this.props.guest) {
+            axios.get(`http://localhost:8080/johnzkan_CSCI201L_final_project/displayProjectwithTask?projectID=${projectID}`)
+            .then(results => {
+                var todo = [];
+                var inprogress = [];
+                var completed = [];
 
-            for (let index = 0; index < results.data.length; index++) {
-                var task = results.data[index];
-                if (task.status === "0") todo.push(task);
-                else if (task.status === "1") inprogress.push(task);
-                else if (task.status === "2") completed.push(task);
-            }
+                for (let index = 0; index < results.data.length; index++) {
+                    var task = results.data[index];
+                    if (task.status === "0") todo.push(task);
+                    else if (task.status === "1") inprogress.push(task);
+                    else if (task.status === "2") completed.push(task);
+                }
 
-            todo = giveID(todo, todo.length, 0);
-            inprogress = giveID(inprogress, inprogress.length, 10);
-            completed = giveID(completed, completed.length, 20);
-            console.log(todo);
-            
-            this.setState({
-                todo: todo,
-                inprogress: inprogress,
-                completed: completed
-            })
-          console.log(results);
-        });
+                todo = giveID(todo, todo.length, 0);
+                inprogress = giveID(inprogress, inprogress.length, 10);
+                completed = giveID(completed, completed.length, 20);
+                console.log(todo);
+                
+                this.setState({
+                    todo: todo,
+                    inprogress: inprogress,
+                    completed: completed
+                })
+            console.log(results);
+            });
+        }
     }
 
     /**

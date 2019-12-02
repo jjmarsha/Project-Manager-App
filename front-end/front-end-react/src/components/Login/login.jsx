@@ -36,6 +36,7 @@ export default class Login extends Component {
       .then(results => {
         if(results.data.msg == "Invalid username and password combination") {
           console.log("error");
+          console.log(results.data.msg);
           this.setState({
             [this.state.error]: results.data.msg
           });
@@ -68,9 +69,11 @@ export default class Login extends Component {
                 <div className="login-field" style={{margin: "auto", textAlign: "center"}}>
                     <input type="submit" name="submit" id="login-submit" value="Log in" />
                 </div>
-                <div id="register-link">
-                  <a href="register.jsx">Register</a>
+                <div id="redirects">
+                  <div id="register-link" onClick={this.props.toggle}>Register</div>
+                  <div id="guest-link" onClick={this.props.guestHandler}>Continue as guest</div>
                 </div>
+                
             </form>
         </div>
       </div>

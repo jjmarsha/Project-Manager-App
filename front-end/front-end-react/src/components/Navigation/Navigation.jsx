@@ -49,7 +49,7 @@ export default class NavigationSideBar extends React.Component {
                         )
                     })}
                 </ListGroup>*/}
-                {this.props.Dev_NoLogin ? <div onClick={this.handleClick}>reset</div> : null}
+                {this.props.Dev_NoLogin ? <div onClick={this.handleClick}>Logout</div> : null}
             </Sidebar>
         )
     }
