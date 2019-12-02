@@ -12,7 +12,7 @@ const App = React.lazy(() => import("./App"));
 const Login = React.lazy(() => import("./components/Login/login"));
 
 //Set this to true/false if you want to test the Login or the App component
-const Dev_NoLogin = false;
+const Dev_NoLogin = true;
 
 class Index extends React.Component {
     constructor(props) {

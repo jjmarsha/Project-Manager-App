@@ -1,4 +1,8 @@
-import React, { Component } from 'react';
+import axios from 'axios';
+
+
+
+/*import React, { Component } from 'react';
 import '../../stylesheets/login.scss';
 import axios from 'axios';
 
@@ -8,21 +12,12 @@ import axios from 'axios';
   Use a function to submit ajax requests. You can bind a function to the class in the constructor.
   Have all the form values stored in the class's state. Use the onChange attribute to update the state
   You can either use fetch or axios for Ajax requests
-*/
+
 
 
 
 export default class Login extends Component {
-  // componentDidMount() {
-  //   axios.get('http://localhost:8080/final-project/login')
-  //   .then(response => {
-  //     this.setState({error: response.data});
-  //   })
-  //   .catch(error=> {
-  //     console.log("hello");
-  //     console.log(error);
-  //   })
-  // }
+
 
   constructor(props) {  
     super(props);
@@ -60,25 +55,6 @@ export default class Login extends Component {
       })
   }
 
-
-
-  // FETCH by chris
-  // constructor() {
-  //   super();
-  //   this.handleSubmit = this.handleSubmit.bind(this);
-  // }
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   const data = new FormData(event.target);
-  //   var endpoint = "https://cors-anywhere.herokuapp.com/localhost:8080/201FinalProj/login";
-  //   fetch(endpoint, {
-  //     body: data,
-  //   })
-  //   .then(data => {
-  //     console.log(data);
-  //   });
-  // }
-
   render() {
     return (
       <div id="login-page">
@@ -101,4 +77,34 @@ export default class Login extends Component {
       </div>
     );
   }
-}
+}*/
+
+
+  // FETCH by chris
+  // constructor() {
+  //   super();
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   const data = new FormData(event.target);
+  //   var endpoint = "https://cors-anywhere.herokuapp.com/localhost:8080/201FinalProj/login";
+  //   fetch(endpoint, {
+  //     body: data,
+  //   })
+  //   .then(data => {
+  //     console.log(data);
+  //   });
+  // }
+
+
+    // componentDidMount() {
+  //   axios.get('http://localhost:8080/final-project/login')
+  //   .then(response => {
+  //     this.setState({error: response.data});
+  //   })
+  //   .catch(error=> {
+  //     console.log("hello");
+  //     console.log(error);
+  //   })
+  // }
