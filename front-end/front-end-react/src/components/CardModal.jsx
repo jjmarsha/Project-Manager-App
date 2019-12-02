@@ -7,6 +7,7 @@ class CardModal extends React.Component {
         super(props);
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        
     }
 
     setWrapperRef(node) {
@@ -33,11 +34,14 @@ class CardModal extends React.Component {
             return null;
         }
         return (
-            <div className="modal-main" ref={this.setWrapperRef}>
-                <section>
-                    {this.props.children}
-                </section>
+            <div className="overlay">
+                <div className="modal-main" ref={this.setWrapperRef}>
+                    <section>
+                        {this.props.children}
+                    </section>
+                </div>
             </div>
+
         )
     }
 }
