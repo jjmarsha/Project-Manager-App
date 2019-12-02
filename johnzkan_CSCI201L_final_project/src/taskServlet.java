@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -30,21 +31,21 @@ public class taskServlet extends HttpServlet {
 		String date = request.getParameter("date");
 		String status = request.getParameter("status");
 		String submitButton = request.getParameter("button");
-
+				
 		// check if date is not correctly formatted:
-		dateValidate d = new dateValidate();
-		if (!d.dateValid(date, "yyyy-MM-dd")) {
-			response.getWriter().append("Served at: ").append(request.getContextPath());
-			// display error message
-			String json = new Gson().toJson("{ \"msg\":\"Please fill in all fields!\"}");
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(json);
-			response.sendRedirect("displayProjectwithTask");
-		}
+//		dateValidate d = new dateValidate();
+//		if (!d.dateValid(date, "yyyy-MM-dd")) {
+//			response.getWriter().append("Served at: ").append(request.getContextPath());
+//			// display error message
+//			String json = new Gson().toJson("{ \"msg\":\"Please fill in all fields!\"}");
+//			response.setContentType("application/json");
+//			response.setCharacterEncoding("UTF-8");
+//			response.getWriter().write(json);
+//			response.sendRedirect("displayProjectwithTask");
+//		}
 
 		// insert a task
-		if (submitButton.equals("Add New Task")) {
+		if (submitButton.equals("create-task")) {
 
 			// get the next taskID
 			newTask.setDate(date);
@@ -58,7 +59,8 @@ public class taskServlet extends HttpServlet {
 		}
 
 		// edit a task
-		else if (submitButton.equals("Edit Task")) {
+		else if (submitButton.equals("edit-task")) {
+			System.out.println("HI");
 
 			// create clientchat ioajsdoi = new clinet chat;
 
@@ -70,11 +72,12 @@ public class taskServlet extends HttpServlet {
 			currTask.setProjID(projID);
 			currTask.setStatus(status);
 			us.editTask(currTask);
-
-			response.sendRedirect("displayProjectwithTask");
+			HttpSession session = request.getSession();
+//			session.setAttribute("projectID", projID);
+//			response.sendRedirect("displayProjectwithTask");
 		}
 
-		else if (submitButton.equals("Remove Task")) {
+		else if (submitButton.equals("delete-task")) {
 			String taskID = request.getParameter("taskID");
 			us.remTask(taskID);
 			response.sendRedirect("displayProjectwithTask");

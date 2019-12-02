@@ -20,7 +20,7 @@ $main-font: 'Gudea', sans-serif;
 
 .modal-input {
     width: 100%;
-    
+    padding-top: 10px;
 
     padding-left: 10px;
     padding-right: 10px;
@@ -54,4 +54,10 @@ $main-font: 'Gudea', sans-serif;
     background-color: lightgray;
     font-family: $main-font;
     border-radius: 20px;
+}
+
+.create-button {
+    width: 80%;
+    display: block;
+    margin: auto;
 }

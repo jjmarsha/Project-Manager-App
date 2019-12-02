@@ -37,8 +37,9 @@ public class displayProjectwithTask extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(CREDENTIALS_STRING);
 			HttpSession session = request.getSession();
+//			int projectID = (int) session.getAttribute("projectID");
 			int projectID = Integer.parseInt(request.getParameter("projectID"));
-			//projectID = 1;
+//			projectID = 1;
 			PreparedStatement loadTask = connection.prepareStatement("SELECT * FROM task WHERE projectID = ?");
 			loadTask.setInt(1, projectID);
 			ResultSet rs = loadTask.executeQuery();
@@ -52,6 +53,8 @@ public class displayProjectwithTask extends HttpServlet {
 				data1.put("description", description);
 				int status = rs.getInt("status");
 				data1.put("status", Integer.toString(status));
+				int taskID = rs.getInt("taskID");
+				data1.put("taskID", Integer.toString(taskID));
 				dataMap.add(data1);
 			}
 			List<JSONObject> jsonObj = new ArrayList<JSONObject>();

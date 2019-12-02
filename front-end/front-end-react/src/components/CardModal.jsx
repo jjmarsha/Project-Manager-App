@@ -19,6 +19,7 @@ class CardModal extends React.Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeTaskName = this.onChangeTaskName.bind(this);
         this.onChangeStatus = this.onChangeStatus.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
 
     getDerivedStateFromProps(props, state) {
@@ -50,8 +51,8 @@ class CardModal extends React.Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-       /* console.log(nextProps);
-        console.log(nextState); */
+        // console.log(nextProps);
+        // console.log(nextState);
     }
 
     //once in component lifetime
@@ -108,9 +109,9 @@ class CardModal extends React.Component {
         event.preventDefault();
         const {taskName, description, status} = this.state;
 
-        // console.log(taskName);
-        // console.log(description);
-        // console.log(status);
+        console.log(taskName);
+        console.log(description);
+        console.log(status);
 
         let thing = "";     
         thing += "?taskName=" + taskName;
@@ -119,12 +120,21 @@ class CardModal extends React.Component {
         thing += "&projectID=" + window.localStorage.getItem("projectID");
         thing += "&date=" + this.state.date;
         thing += "&button=" + "edit-task";
+
+        
         axios.get("http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet" + thing)
         .then(results => {
             console.log(results);
         });
     }
 
+    onDelete(event) {
+        console.log('DELETE');
+        axios.get(`http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet?button=delete-task&taskID=${34}`)
+        .then(results => {
+            
+        });
+    }
 
     render() {
         if (!this.props.show) {
@@ -133,6 +143,7 @@ class CardModal extends React.Component {
         return (
             <div className="overlay">
                 <div className="modal-main" ref={this.setWrapperRef} >
+                    <button onClick={this.onDelete}>X</button>
                     <form onSubmit={this.handleSubmit} >
                         <div><input className="modal-input" type="text" name="taskName" value={this.state.taskName} onChange={this.onChangeTaskName}/></div>
                         <div><input className="modal-input" type="text" name="description" value={this.state.description} onChange={this.onChangeDescription}/></div>
