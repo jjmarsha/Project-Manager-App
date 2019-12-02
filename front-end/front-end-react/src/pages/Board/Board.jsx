@@ -136,6 +136,7 @@ export default class Board extends Component {
                         <div
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}>
+                            <div className="header-bar">Backlog</div>
                             {this.state.todo.map((item, index) => (
                                 <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
                                 </Card>
@@ -149,6 +150,7 @@ export default class Board extends Component {
                         <div
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}>
+                            <div className="header-bar">In-progress</div>
                             {this.state.inprogress.map((item, index) => (
                               <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
                               </Card>
@@ -162,6 +164,7 @@ export default class Board extends Component {
                         <div
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}>
+                            <div className="header-bar">Completed</div>
                             {this.state.completed.map((item, index) => (
                               <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
                               </Card>
