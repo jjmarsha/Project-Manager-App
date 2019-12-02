@@ -63,6 +63,7 @@ public class login extends HttpServlet {
 				error err = new error("Invalid username and password combination");
 				String json = new Gson().toJson(err);
 				response.setContentType("application/json");
+				response.setHeader("Access-Control-Allow-Origin", "*");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().write(json);
 				connection.close();
