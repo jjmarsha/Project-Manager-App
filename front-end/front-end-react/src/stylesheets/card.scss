@@ -1,5 +1,4 @@
 .card {
-   // margin: 25px;
     padding: 5px;
     //width: 250px;
     width: 100%;
@@ -12,7 +11,7 @@
 }
 
 .card:hover {
-   // box-shadow: 0 6px 10px 0px #dce8f4;
+    box-shadow: 0 6px 10px 0px #000000;
 }
 
 .card-content {
@@ -31,6 +30,29 @@
     width: 30px;
     height: 8px;
     border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.status {
+    width: 30px;
+    height: 8px;
+    border-radius: 10px;
     background: #23d2ac;
     margin-bottom: 15px;
+}
+
+.green {
+    background: #23d2ac;
+}
+
+.red {
+    background: red;
+}
+
+.yellow {
+    background: yellow;
+}
+
+.assignee {
+    font-size: 12px;
 }
