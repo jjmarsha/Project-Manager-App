@@ -216,29 +216,48 @@ export default class Board extends Component {
             </CreateTask>
           </div>
             <DragDropContext onDragEnd={this.onDragEnd}>
-              {columns.map((item, index) => (
-                <Droppable droppableId={'droppable' + index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      style={getListStyle(snapshot.isDraggingOver)}
-                    >
-                      <div className="header-bar">{this.columnNames[index]}</div>
-                      {item.map((item, index) => (
-                        <Card 
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                          content={item.content}
-                        >
-
-                        </Card>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
+            <Droppable droppableId="droppable1">
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            style={getListStyle(snapshot.isDraggingOver)}>
+                            <div className="header-bar">To-Do</div>
+                            {this.state.todo.map((item, index) => (
+                                <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
+                                </Card>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
                 </Droppable>
-              ))}
+                <Droppable droppableId="droppable2">
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            style={getListStyle(snapshot.isDraggingOver)}>
+                            <div className="header-bar">In-progress</div>
+                            {this.state.inprogress.map((item, index) => (
+                              <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
+                              </Card>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+                <Droppable droppableId="droppable3">
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            style={getListStyle(snapshot.isDraggingOver)}>
+                            <div className="header-bar">Completed</div>
+                            {this.state.completed.map((item, index) => (
+                              <Card key={item.id} draggableId={item.id} index={index} content={item.content}>
+                              </Card>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
             </DragDropContext>
             </React.Fragment>
         );
