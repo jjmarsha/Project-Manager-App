@@ -50,8 +50,8 @@ class CardModal extends React.Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log(nextProps);
-        console.log(nextState);
+       /* console.log(nextProps);
+        console.log(nextState); */
     }
 
     //once in component lifetime
@@ -108,9 +108,10 @@ class CardModal extends React.Component {
         event.preventDefault();
         const {taskName, description, status} = this.state;
 
-        console.log(taskName);
-        console.log(description);
-        console.log(status);
+        // console.log(taskName);
+        // console.log(description);
+        // console.log(status);
+
         let thing = "";     
         thing += "?taskName=" + taskName;
         thing += "&description=" + description;

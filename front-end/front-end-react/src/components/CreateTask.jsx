@@ -41,18 +41,33 @@ export default class CreateTask extends React.Component {
         var date = new Date().toISOString().slice(0, 19).replace('T', ' ');
         event.preventDefault();
         const {taskName, description, status} = this.state;
-        console.log(this.state);
         let thing = "";
         thing += "?taskName=" + taskName;
         thing += "&description=" + description;
         thing += "&status=" + status;
         thing += "&projectID=" + window.localStorage.getItem("projectID");
-        thing += "&date=" + date;
         thing += "&button=" + "create-task";
-        axios.get("http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet" + thing)
+        thing += "&date=" + date;
+
+
+        const finalThing = "http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet" + (thing);
+        console.log(finalThing);
+
+        axios.get(finalThing)
         .then(results => {
             console.log(results);
         })
+
+        // {
+        //     params: {
+        //         taskName: taskName,
+        //         description: description,
+        //         status: status,
+        //         projectID: window.localStorage.getItem("projectID"),
+        //         button: 'create-task',
+        //         date: date
+        //     }
+        // }
     }
 
     render() {

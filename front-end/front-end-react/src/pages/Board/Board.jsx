@@ -100,15 +100,12 @@ export default class Board extends Component {
 
                 todo = giveID(todo, todo.length, 0);
                 inprogress = giveID(inprogress, inprogress.length, 10);
-                completed = giveID(completed, completed.length, 20);
-                console.log(todo);
-                
+                completed = giveID(completed, completed.length, 20);                
                 this.setState({
                     todo: todo,
                     inprogress: inprogress,
                     completed: completed
                 })
-            console.log(results);
             });
         }
         else {
@@ -204,10 +201,6 @@ export default class Board extends Component {
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
-        var columns = [];
-        columns.push(this.state.todo);
-        columns.push(this.state.inprogress);
-        columns.push(this.state.completed);
         return (
           <React.Fragment>
           <div>
