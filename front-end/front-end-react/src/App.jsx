@@ -17,11 +17,13 @@ function App(props) {
           <Switch>
             {Links.map((value, key) => {
               return (
+                <div style={{margin: "auto", display: "flex"}}>
                 <Route
                   path={value.url}
                   key={key}
                   component={value.component}
                 />
+                </div>
               )
             })}
           </Switch>
