@@ -79,7 +79,6 @@ h2 {
 
     input[type='submit'] {
         font-size: 15px;
-
     }
 }
 
@@ -92,7 +91,11 @@ h2 {
     text-transform: uppercase;
     font-size: 11px;
     margin-top: 20px;
+}
 
+#login-submit:hover {
+    background-color: $submit-color;
+    color: white;
 }
 #redirects {
     margin-top: 90px;

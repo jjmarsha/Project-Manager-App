@@ -58,11 +58,12 @@ export default class CreateTask extends React.Component {
     render() {
         return(
             <React.Fragment>
-                <form onSubmit={this.handleSubmit} >
-                    <div><input className="modal-input" type="text" name="taskName" value={this.state.taskName} onChange={this.onChangeTaskName}/></div>
-                    <div><input className="modal-input" type="text" name="description" value={this.state.description} onChange={this.onChangeDescription}/></div>
-                    <div><input className="modal-input" type="text" name="status" value={this.state.status} onChange={this.onChangeStatus} /></div>
-                    <div><input type="submit" name="button" value="create-task"></input></div>
+                <form onSubmit={this.handleSubmit} className="create-form" >
+                    <div className="create-title"><h3>Create a Task</h3></div>
+                    <div><input className="create modal-input" type="text" name="taskName" value={this.state.taskName} onChange={this.onChangeTaskName} placeholder="Task Name"/></div>
+                    <div><input className="create modal-input" type="text" name="description" value={this.state.description} onChange={this.onChangeDescription} placeholder="Task Description"/></div>
+                    <div><input className="create modal-input" type="text" name="status" value={this.state.status} onChange={this.onChangeStatus} placeholder="Status"/></div>
+                    <div><input type="submit" name="button" value="Create"></input></div>
                 </form>
             </React.Fragment>
         )
