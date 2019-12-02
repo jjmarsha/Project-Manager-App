@@ -8,20 +8,24 @@ import {NavLink} from "react-router-dom";
 import "./Navigation.scss";
 
 //We can later implement to allow the user to change color of sidebar
-const currentStyle = "success";
+const currentStyle = "info";
+/*
+    "success" : green
+    "danger" : red
+    "warning" : yellow
+    "info" : blue
+*/
 
 export default class NavigationSideBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            CurrentPage: "",
-        }
-
-        this.changePage = this.changePage.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    changePage = () => {
-        
+
+    handleClick() {
+        window.localStorage.setItem("session", "");
+        this.props.handleSession("");
     }
 
     render() {
@@ -44,6 +48,7 @@ export default class NavigationSideBar extends React.Component {
                         )
                     })}
                 </ListGroup>
+                {this.props.Dev_NoLogin ? <div onClick={this.handleClick}>reset</div> : null}
             </Sidebar>
         )
     }

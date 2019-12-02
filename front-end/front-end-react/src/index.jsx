@@ -20,30 +20,37 @@ class Index extends React.Component {
         this.state = {
             session: "",
         };
+
+        this.handleSession = this.handleSession.bind(this);
     }
 
     componentDidMount() {
         const session = window.localStorage.getItem("session");
-        if(session !== null) {
+        if(session !== "") {
             this.setState(() => {return {session: session}});
         }
+    }
 
-        if(Dev_NoLogin) {
-            this.setState(() => {return {session: "user"}});
-        }
+    handleSession(session) {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                session: session,
+            }
+        });
     }
 
     render() {
         if(this.state.session !== "") {
             return (
-                <React.Suspense fallback={<div></div>}>
-                    <App/>
+                <React.Suspense fallback={<Loading/>}>
+                    <App handleSession={this.handleSession} Dev_NoLogin={Dev_NoLogin}/>
                 </React.Suspense>
             )
         } else {
             return (
                 <React.Suspense fallback={<Loading/>}>
-                    <Login/>
+                    <Login handleSession={this.handleSession}/>
                 </React.Suspense>
             )
         }

@@ -22,10 +22,8 @@ const Container = styled.div`
   display: inline-flex;
 `;
 
+
 export default class Board extends React.Component {
-
-
-
     static defaultProps = {
         isCombineEnabled: false
     };
@@ -34,8 +32,15 @@ export default class Board extends React.Component {
         this.state = {
             columns: authorQuoteMap,
             ordered: Object.keys(authorQuoteMap),
+            socket: null,
         };
     }
+
+    componentDidMount() {
+      const socket = new WebSocket("https://localhost:8080");
+    }
+
+
 
     onDragEnd = (result) /* DropResult */ => {
         if (result.combine) {
