@@ -13,9 +13,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/nicol/cs201/cs201finalproject/johnzkan_CSCI201L_final_project/json-20190722.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nicol/cs201/cs201finalproject/johnzkan_CSCI201L_final_project/mysql-socket-factory-1.0.15-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nicol/cs201/cs201finalproject/johnzkan_CSCI201L_final_project/mysql-connector-java-5.1.46 (1).jar"/>
-	<classpathentry kind="lib" path="C:/Users/nicol/cs201/cs201finalproject/johnzkan_CSCI201L_final_project/WebContent/WEB-INF/lib/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="JSON.jar"/>
+	<classpathentry kind="lib" path="MYSQL1.jar"/>
+	<classpathentry kind="lib" path="MYSQL2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

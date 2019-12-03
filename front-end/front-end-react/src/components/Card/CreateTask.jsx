@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import '../stylesheets/modal.scss';
+import '../../stylesheets/modal.scss';
 import axios from 'axios';
 
 
@@ -56,18 +56,8 @@ export default class CreateTask extends React.Component {
         axios.get(finalThing)
         .then(results => {
             console.log(results);
-        })
-
-        // {
-        //     params: {
-        //         taskName: taskName,
-        //         description: description,
-        //         status: status,
-        //         projectID: window.localStorage.getItem("projectID"),
-        //         button: 'create-task',
-        //         date: date
-        //     }
-        // }
+            this.props.onInfoChange();
+        });
     }
 
     render() {

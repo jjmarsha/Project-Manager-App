@@ -12,6 +12,7 @@
     "electron": "^6.0.12",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
+    "react-addons-shallow-compare": "^15.6.2",
     "react-beautiful-dnd": "^12.1.1",
     "react-dom": "^16.11.0",
     "react-dragula": "^1.1.17",
