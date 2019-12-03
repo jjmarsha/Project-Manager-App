@@ -32,11 +32,9 @@ class CardModal extends React.Component {
     }
 
     componentDidMount() {
-        this.clickListener = document.addEventListener('mousedown', this.handleClick);
+        document.addEventListener('mousedown', this.handleClick);
     }
-    componentWillUnmount() {
-        this.clickListener.removeEventListener();
-    }
+
     handleClick(event) {
         if (this.modalReference.current != null && this.props.show && !this.modalReference.current.contains(event.target)) {
             this.props.handleModalClose();
@@ -79,7 +77,7 @@ class CardModal extends React.Component {
         console.log(parameters);
         axios.get(endpoint + parameters)
             .then(result => {
-                this.props.onCardInfoChange();
+                //this.props.onCardInfoChange();
             });
         this.props.handleModalClose();
 
