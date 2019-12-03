@@ -65,20 +65,29 @@ class CardModal extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const {taskName, description, status} = this.state;
-        const endpoint = "http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet";
-        let parameters = "";
-        parameters += `?taskName=${this.state.taskName}`;
-        parameters += `&description=${this.state.description}`;
-        parameters += `&status=${this.state.status}`;
-        parameters += `&taskID=${this.props.taskID}`;
-        parameters += `&date=${this.props.date}`;
-        parameters += `&projectID=${window.localStorage.getItem("projectID")}`;
-        parameters += `&button=edit-task`;
-        console.log(parameters);
-        axios.get(endpoint + parameters)
+        var params = {
+            taskName: taskName,
+            description: description,
+            status: status,
+            projectID: window.localStorage.getItem("projectID"),
+            button: "edit-task",
+            date: this.props.date,
+            taskID: this.props.taskID
+        }
+
+        var endpoint = "http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet?";
+        var esc = encodeURIComponent;
+        var query = Object.keys(params)
+            .map(k => esc(k) + "=" + esc(params[k]))
+            .join('&');
+
+        axios.get(endpoint + query)
             .then(result => {
                 //this.props.onCardInfoChange();
-            });
+            })
+            .catch(error => {
+                console.log(error);
+            })
         this.props.handleModalClose();
 
     }

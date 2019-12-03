@@ -157,26 +157,32 @@ export default class Board extends Component {
             else if (source.droppableId === 'droppable3') sourceTask = this.state.completed[source.index];
 
             console.log(sourceTask);
-            // const task = sourceTask.content;
-            // const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            const task = sourceTask.content;
+            const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
-            // let parameters = "";
-            // parameters += "?taskName=" + task.taskName;
-            // parameters += "&description='" + task.description +"'";
-            // parameters += "&status=" + task.status;
-            // parameters += "&projectID=" + window.localStorage.getItem("projectID");
-            // parameters += "&button=edit-task";
-            // parameters += "&date=" + date;
+            var params = {
+                taskName: task.taskName,
+                description: task.description,
+                status: task.status,
+                projectID: window.localStorage.getItem("projectID"),
+                button: "edit-task",
+                date: date,
+                taskID: task.taskID
+            }
 
-            // const new_parameters = encodeURIComponent(parameters);
-    
-            // const finalThing = "http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet" + (new_parameters);
-            // console.log(finalThing);
-    
-            // axios.get(finalThing)
-            // .then(results => {
-            //     console.log(results);
-            // })
+            var endpoint = "http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet?";
+            var esc = encodeURIComponent;
+            var query = Object.keys(params)
+                .map(k => esc(k) + "=" + esc(params[k]))
+                .join('&');
+            
+            axios.get(endpoint + query)
+                .then(results => {
+                    console.log(results);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
 
             this.setState({
                 todo: result.droppable != null ? result.droppable : this.state.todo,
@@ -195,90 +201,39 @@ export default class Board extends Component {
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
     render() {
+        var columns = [];
+        columns.push(this.state.todo);
+        columns.push(this.state.inprogress);
+        columns.push(this.state.completed);
+  
         return (
-          <React.Fragment>
-          <div>
-            <CreateTask onInfoChange={this.reload}>
-
-            </CreateTask>
-          </div>
-            <DragDropContext onDragEnd={this.onDragEnd}>
-                <Droppable droppableId="droppable1">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}
-                        >
-                            <div className="header-bar">To-Do</div>
-                            {this.state.todo.map((item, index) => (
-                                <Card 
-                                    key={item.id} 
-                                    draggableId={item.id} 
-                                    index={index}
-                                    taskName={item.taskName}
-                                    taskID={item.taskID}
-                                    description={item.description}
-                                    date={item.date}
-                                    status={item.status}
-                                    onCardInfoChange={this.reload}
-                                >
-                                </Card>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                <Droppable droppableId="droppable2">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}
-                        >
-                            <div className="header-bar">In-Progress</div>
-                            {this.state.inprogress.map((item, index) => (
-                                <Card 
-                                    key={item.id} 
-                                    draggableId={item.id} 
-                                    index={index}
-                                    taskName={item.taskName}
-                                    taskID={item.taskID}
-                                    description={item.description}
-                                    date={item.date}
-                                    status={item.status}
-                                    onCardInfoChange={this.reload}
-                                >
-                                </Card>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                <Droppable droppableId="droppable3">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}
-                        >
-                            <div className="header-bar">Completed</div>
-                            {this.state.completed.map((item, index) => (
-                                <Card 
-                                    key={item.id} 
-                                    draggableId={item.id} 
-                                    index={index}
-                                    taskName={item.taskName}
-                                    taskID={item.taskID}
-                                    description={item.description}
-                                    date={item.date}
-                                    status={item.status}
-                                    onCardInfoChange={this.reload}
-                                >
-                                </Card>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
+            <React.Fragment>
+                <div> <CreateTask onInfoChange={this.reload} /> </div>
+                <DragDropContext onDragEnd={this.onDragEnd}>
+                    {columns.map((item, index) => (
+                        <Droppable droppableId={`droppable${index + 1}`}>
+                            {(provided, snapshot) => (
+                                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                                    <div className="header-bar"> {this.columnNames[index]} </div>
+                                    {columns[index].map((item, index) => (
+                                        <Card 
+                                            key={item.id}
+                                            draggableId={item.id} 
+                                            index={index}
+                                            taskName={item.taskName}
+                                            taskID={item.taskID}
+                                            description={item.description}
+                                            date={item.date}
+                                            status={item.status}
+                                            onCardInfoChange={this.reload}
+                                        />
+                                    ))}
+                                {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    ))}
+                </DragDropContext>
             </React.Fragment>
         );
     }

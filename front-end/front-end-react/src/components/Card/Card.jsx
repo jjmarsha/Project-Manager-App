@@ -54,8 +54,8 @@ class Card extends React.Component {
     render() {
         var name = "status ";
         if (this.props.status === '0') name += 'red';
-        if (this.props.tags === '1') name += 'yellow';
-        if (this.props.tags === '2') name += 'green';
+        if (this.props.status === '1') name += 'yellow';
+        if (this.props.status === '2') name += 'green';
         return (
             <Draggable 
                 key={this.props.id} 
@@ -79,6 +79,7 @@ class Card extends React.Component {
                                 description={this.props.description}
                                 status={this.props.status}
                                 date={this.props.date}
+                                taskID={this.props.taskID}
                                 onCardInfoChange={this.props.onCardInfoChange}
                             >
                             </CardModal>
