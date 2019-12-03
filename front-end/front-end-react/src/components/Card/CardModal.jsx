@@ -21,6 +21,8 @@ class CardModal extends React.Component {
             description: this.props.description,
             status: this.props.status
         }
+
+        this.endpoint = "http://localhost:8080/johnzkan_CSCI201L_final_project/taskServlet?";
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -83,7 +85,7 @@ class CardModal extends React.Component {
 
         axios.get(endpoint + query)
             .then(result => {
-                //this.props.onCardInfoChange();
+                this.props.onCardInfoChange();
             })
             .catch(error => {
                 console.log(error);
@@ -94,6 +96,14 @@ class CardModal extends React.Component {
 
 
     onDelete(event) {
+        axios.get(`${this.endpoint}taskID=${this.props.taskID}&button=delete-task`)
+            .then(result => {
+                this.props.onCardInfoChange();
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        this.props.handleModalClose();
     }
 
     render() {
